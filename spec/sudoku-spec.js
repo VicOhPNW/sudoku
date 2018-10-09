@@ -1,4 +1,4 @@
-import { confirmBoardSize, validateRowSum, validateColSum, validateIndividualRow, validateIndividualCol } from './../src/sudoku.js';
+import { confirmBoardSize, validateRowSum, checkThreeByThree, validateColSum, validateIndividualRow, validateIndividualCol } from './../src/sudoku.js';
 
 describe('confirmBoardSize', function() {
     it('should validate that there are nine columns', function() {
@@ -89,7 +89,7 @@ describe('validateIndividualCol', function() {
     it('should validate each column to see if it contains numbers 1 through 9 integers', function() {
 
         var sampleArray = [
-            [9,2,3,4,5,6,7,8,9],
+            [1,2,3,4,5,6,7,8,9],
             [9,1,2,3,4,5,6,7,8],
             [8,9,1,2,3,4,5,6,7],
             [7,8,9,1,2,3,4,5,6],
@@ -100,5 +100,23 @@ describe('validateIndividualCol', function() {
             [2,3,4,5,6,7,8,9,1]
         ];
         expect(validateIndividualCol(sampleArray)).toEqual(true)
+    });
+});
+
+describe('validateIndividualCol', function() {
+    it('should validate each 3x3 square and see if it contains a 1-9', function() {
+
+        var sampleArray = [
+            [1,2,3,4,5,6,7,8,9],
+            [4,5,6,7,8,9,1,2,3],
+            [7,8,9,1,2,3,4,5,6],
+            [2,3,4,5,6,7,8,9,1],
+            [5,6,7,8,9,1,2,3,4],
+            [8,9,1,2,3,4,5,6,7],
+            [3,4,5,6,7,8,9,1,2],
+            [6,7,8,9,1,2,3,4,5],
+            [9,1,2,3,4,5,6,7,8]
+        ];
+        expect(checkThreeByThree(sampleArray)).toEqual(true)
     });
 });

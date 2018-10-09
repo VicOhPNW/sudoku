@@ -68,3 +68,33 @@ export function validateIndividualCol(input) {
     }
     return true;
 }
+
+export function checkThreeByThree(input) {
+    var masterArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var tempArr = masterArr.slice();
+    var startingPoints = [
+        [0,0],
+        [0,3],
+        [0,6],
+        [3,0],
+        [3,3],
+        [3,6],
+        [6,0],
+        [6,3],
+        [6,6]
+    ];
+    startingPoints.forEach(function(startingPoint) {
+        for (var i=0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                if (tempArr.includes(input[i + startingPoint[0]][j + startingPoint[1]])) {
+                    tempArr.splice(tempArr.indexOf(input[i + startingPoint[0]][j + startingPoint[1]]),1);
+                } else {
+                    return false;
+                }
+            }
+            tempArr = masterArr.slice();
+        }
+    });
+    return true;
+    
+}
